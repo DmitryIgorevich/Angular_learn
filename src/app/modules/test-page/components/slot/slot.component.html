@@ -1,0 +1,16 @@
+SlotComponent
+<br>
+<button (click)="plus()">Плюс</button>
+<button (click)="minus()">Минус</button>
+<br>
+<br>
+
+<div app-slot-child>
+    <div class="selected-content" selected-content>
+        Проецируемый контент: {{value}}
+    </div>
+    <br>
+    <div class="default-content">
+        Проецируемый контент дефолтный: {{value}}
+    </div>
+</div>
