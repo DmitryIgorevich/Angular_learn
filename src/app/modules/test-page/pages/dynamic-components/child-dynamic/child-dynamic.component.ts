@@ -1,12 +1,11 @@
 import {
     Component,
-    ComponentFactoryResolver,
     Input,
     OnInit,
     ViewContainerRef,
 } from '@angular/core';
 
-import {WorkDynamicComponent} from '../work-dynamic/work-dynamic.component';
+import {TComponents} from 'modules/test-page/pages/dynamic-components/parent-dynamic/parent-dynamic.component';
 
 @Component({
     selector: '[app-child-dynamic]',
@@ -15,25 +14,30 @@ import {WorkDynamicComponent} from '../work-dynamic/work-dynamic.component';
 })
 export class ChildDynamicComponent implements OnInit {
     @Input()
-    public components: any[];
+    public components: TComponents;
 
     private timerId: ReturnType<typeof setTimeout>;
+    private indexComponent: number = 0;
 
     constructor(
-        protected vcr: ViewContainerRef,
-        protected cfr: ComponentFactoryResolver
-    ) { }
+        protected vcr: ViewContainerRef
+    ) {}
 
     ngOnInit() {
         this.setInterval();
     }
 
     protected loadComponent(): void {
-        const component = this.components[0];
+        this.indexComponent = (this.indexComponent + 1) % this.components.length;
+        const component = this.components[this.indexComponent];
 
-        const componentFactory = this.cfr.resolveComponentFactory(component.component);
-        const createdComponent = this.vcr.createComponent(componentFactory);
-        (createdComponent as any).instance.data = component.data;
+        if (!component) {
+            return;
+        }
+
+        this.vcr.clear();
+        const createdComponent = this.vcr.createComponent(component.component);
+        createdComponent.instance.data = component.data;
     }
 
     protected setInterval(): void {
@@ -46,6 +50,6 @@ export class ChildDynamicComponent implements OnInit {
         this.timerId = setTimeout(() => {
             this.loadComponent();
             this.setInterval();
-        }, 2000);
+        }, 1500);
     }
 }
