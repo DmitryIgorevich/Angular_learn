@@ -1,8 +1,9 @@
 import {
+    AfterViewChecked,
+    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    OnInit,
 } from '@angular/core';
 
 @Component({
@@ -11,7 +12,7 @@ import {
     styleUrls: ['./parent.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetectionParentComponent implements OnInit {
+export class DetectionParentComponent implements AfterViewInit, AfterViewChecked {
     public simpleValueForChild: number = 0;
     public difficultValueForChild: IDifficultValue = {
         name: 'First name',
@@ -23,7 +24,12 @@ export class DetectionParentComponent implements OnInit {
         protected cdr: ChangeDetectorRef
     ) { }
 
-    public ngOnInit(): void {
+    public ngAfterViewInit(): void {
+        console.log('ngAfterViewInit DetectionParentComponent');
+    }
+
+    public ngAfterViewChecked(): void {
+        console.log('ngAfterViewChecked DetectionParentComponent');
     }
 
     public changeLocalValue(): void {

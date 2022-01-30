@@ -1,0 +1,26 @@
+DataPassChildComponent
+<div (click)="changeCounterUp()">
+    Имя: {{hero.name}}
+    <br>
+    Возраст: {{hero.age}}
+    <br>
+    Мастер: {{hero.masterName}}
+    <br>
+    Счетчик: {{hero.counter}}
+    <br>
+    <br>
+    Общий текст: {{text}}
+</div>
+
+<br>
+
+<button (click)="counterChange(true)">Увеличить значение в сервисе ServiceNotProvidedInModuleService</button>
+<button (click)="counterChange()">Уменьшить значение в сервисе ServiceNotProvidedInModuleService</button>
+<br>
+<br>
+<button (click)="counterChangeserviceFromChildService(true)">Уменьшить значение в сервисе ServiceFromChildService</button>
+<button (click)="counterChangeserviceFromChildService()">Уменьшить значение в сервисе ServiceFromChildService</button>
+<br>
+<br>
+<input #inputRef/>
+<button (click)="inputChanged.emit(inputRef.value)">Логировать инпут</button>

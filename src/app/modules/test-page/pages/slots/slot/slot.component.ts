@@ -1,7 +1,8 @@
 import {
+    AfterContentChecked,
+    AfterContentInit,
     ChangeDetectionStrategy,
     Component,
-    OnInit,
 } from '@angular/core';
 
 @Component({
@@ -10,12 +11,17 @@ import {
     styleUrls: ['./slot.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SlotComponent implements OnInit {
+export class SlotComponent implements AfterContentInit, AfterContentChecked {
     public value: number = 0;
 
     constructor() { }
 
-    public ngOnInit(): void {
+    public ngAfterContentInit(): void {
+        console.log('ngAfterContentInit SlotComponent');
+    }
+
+    public ngAfterContentChecked(): void {
+        console.log('ngAfterContentChecked SlotComponent');
     }
 
     public plus(): void {

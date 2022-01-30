@@ -1,0 +1,19 @@
+// host можно применять только если emulated включена инкапсуляция
+:host {
+    background-color: green;
+    margin: 20px 0 0 0;
+
+    .ChildEncapsulationComponent {
+        letter-spacing: 5px;
+    }
+}
+
+// если где то в родительском компоненте будет такой класс, то он применится для данного компонента
+:host-context(.active) {
+    background-color: darkmagenta;
+}
+
+// если none инкапсуляция, то достучаться до классов можно так, не нужно вкладывать их в хост
+// .ChildEncapsulationComponent {
+    // letter-spacing: 5px;
+// }

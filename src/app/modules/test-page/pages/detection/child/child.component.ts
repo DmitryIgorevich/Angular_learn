@@ -10,7 +10,7 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import {IDifficultValue} from 'modules/test-page/components/parent/parent.component';
+import {IDifficultValue} from 'modules/test-page/pages/detection/parent/parent.component';
 
 @Component({
     selector: '[app-detection-child]',
