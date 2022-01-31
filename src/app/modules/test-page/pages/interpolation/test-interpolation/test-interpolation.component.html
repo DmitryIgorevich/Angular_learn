@@ -1,0 +1,132 @@
+<h3>TestTemplatesComponent</h3>
+
+<p>{{testText || 'text'}}</p>
+
+<br>
+<br>
+
+<ul>
+    <li *ngFor="let name of names">Имя: {{name.name}}</li>
+</ul>
+
+<br>
+<br>
+
+<div>
+    <input type="text" #input (input)="setValueFromInput(input.value)">
+    <p>Значение из инпута: {{valueFromInput}}</p>
+</div>
+
+<br>
+<br>
+
+<div>
+    <h3>Привязать классы можно несколькими способами:</h3>
+
+    <br>
+
+    <p [attr.data-attribute]="'test-'+'value'">Привязка аттрибута</p>
+    <button [attr.aria-label]="'test'">Ариа</button>
+
+    <ul>
+        <br>
+        <li [class]="'test test2'">Строка имен классов</li>
+        <br>
+        <li [class]="{test: true, test2: false, test3: true}">Обьект с ложными и правдивыми значениями</li>
+        <br>
+        <li [class]="['class1', 'class2']">Массив классов</li>
+        <br>
+        <li [class.boolean]="true">Привязать конкретный класс вычесленным значением true</li>
+        <li [class.boolean]="false">Привязать конкретный класс вычесленным значением false</li>
+    </ul>
+</div>
+
+<br>
+<br>
+
+<div>
+    <h3>Привязка стилей</h3>
+    <ul>
+        <br>
+        <li [style.color]="'red'">В виде строки конкретный стиль</li>
+        <br>
+        <li [style]="{
+            color: 'red',
+            backgroundColor: 'white'
+        }">В виде обьекта перечисление стиль</li>
+        <br>
+        <li [style]="'color: red; backgroundColor: white'">В виде строки перечисление стиль</li>
+    </ul>
+</div>
+
+<br>
+<br>
+
+<div>
+    <h3>Двухсторонняя привязка</h3>
+
+    <p>Значение в родителе 2 сторонняя привязка {{twoWayBindValue}}</p>
+    <input type="text" #inputRef (input)="onInputChange(inputRef.value)">
+
+    <h4>NgModel метод</h4>
+    <input type="text" [(ngModel)]="twoWayBindValue">
+
+    <br>
+    <div app-binding-child
+        [(text)]="twoWayBindValue"
+    ></div>
+</div>
+
+<br>
+<br>
+
+<div>
+    <h3>Шаблонные переменные</h3>
+
+    Одноуровневая переменная и ниже
+    <br>
+    <input #ref1 type="text" [(ngModel)]="ref1Value">
+    <p *ngIf="true">Значение инпута: {{ref1.value}}</p>
+
+    <br>
+    <br>
+
+    <!-- Так делать уже нельзя -->
+    <!-- Разноуровневая переменная и ниже
+    <br>
+    <input *ngIf="true" #ref2 type="text" [(ngModel)]="ref2Value">
+    <p>Значение инпута: {{ref2.value}}</p> -->
+
+
+    <!-- Так работать будет -->
+    <ng-container >
+        <div *ngFor="let i of [1,2]">
+            <input #ref type="text" [value]="i"/>
+            {{ref.value}}
+        </div>
+    </ng-container>
+
+    <!-- А так нет, потому что обращение к переменной идет снаружи ее области видимости -->
+    <!-- <ng-container *ngFor="let i of [1,2]">
+        <input #ref type="text" [value]="i" />
+    </ng-container>
+    {{ ref.value }} -->
+</div>
+
+<br>
+<br>
+
+<div>
+    <h3>NgTemplate</h3>
+    <ng-container *ngFor="let name of names;">
+        <ng-template let-item="name" #nameRef>
+            <div>{{name.name}}</div>
+        </ng-template>
+
+        <ng-container [ngTemplateOutlet]="nameRef"></ng-container>
+    </ng-container>
+
+    <ng-template #name>
+    </ng-template>
+    <button (click)="logNgTemplate(name)">Вывести ngTemplate</button>
+</div>

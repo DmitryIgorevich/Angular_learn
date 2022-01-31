@@ -1,3 +1,4 @@
+import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
@@ -19,6 +20,8 @@ import {DataPassParentComponent} from 'modules/test-page/pages/data-passing/data
 import {DataPassChildComponent} from 'modules/test-page/pages/data-passing/data-pass-child/data-pass-child.component';
 import {ChildDynamicComponent} from 'modules/test-page/pages/dynamic-components/child-dynamic/child-dynamic.component';
 import {ParentDynamicComponent} from 'modules/test-page/pages/dynamic-components/parent-dynamic/parent-dynamic.component';
+import {TestTemplatesComponent} from 'modules/test-page/pages/interpolation/test-interpolation/test-interpolation.component';
+import {BindingChildComponent} from './pages/interpolation/binding-child/binding-child.component';
 
 export const testModuleRoutes: Routes = [
     {
@@ -46,12 +49,17 @@ export const testModuleRoutes: Routes = [
         path: 'dynamic-components',
         component: ParentDynamicComponent,
     },
+    {
+        path: 'templates',
+        component: TestTemplatesComponent,
+    },
 ];
 
 @NgModule({
     imports: [
         RouterModule.forRoot(testModuleRoutes),
         CommonModule,
+        FormsModule,
     ],
     declarations: [
         ChildEncapsulationComponent,
@@ -63,6 +71,9 @@ export const testModuleRoutes: Routes = [
 
         ParentDynamicComponent,
         ChildDynamicComponent,
+
+        TestTemplatesComponent,
+        BindingChildComponent,
 
         TestComponent,
         TestNavigationComponent,
