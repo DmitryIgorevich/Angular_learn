@@ -22,6 +22,8 @@ import {ChildDynamicComponent} from 'modules/test-page/pages/dynamic-components/
 import {ParentDynamicComponent} from 'modules/test-page/pages/dynamic-components/parent-dynamic/parent-dynamic.component';
 import {TestTemplatesComponent} from 'modules/test-page/pages/interpolation/test-interpolation/test-interpolation.component';
 import {BindingChildComponent} from './pages/interpolation/binding-child/binding-child.component';
+import {TestComponentDirectiveComponent} from './pages/directives/test-component-directive/test-component-directive.component';
+import {DirectiveDirective} from './pages/directives/directive.directive';
 
 export const testModuleRoutes: Routes = [
     {
@@ -53,6 +55,10 @@ export const testModuleRoutes: Routes = [
         path: 'templates',
         component: TestTemplatesComponent,
     },
+    {
+        path: 'directives',
+        component: TestComponentDirectiveComponent,
+    },
 ];
 
 @NgModule({
@@ -75,12 +81,16 @@ export const testModuleRoutes: Routes = [
         TestTemplatesComponent,
         BindingChildComponent,
 
+        TestComponentDirectiveComponent,
+
         TestComponent,
         TestNavigationComponent,
         DetectionParentComponent,
         ChildDetectionComponent,
         SlotComponent,
         SlotChildComponent,
+
+        DirectiveDirective,
     ],
     providers: [
         TestService,
