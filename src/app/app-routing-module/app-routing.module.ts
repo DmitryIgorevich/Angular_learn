@@ -1,11 +1,24 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {
+    PreloadAllModules,
+    RouterModule,
+} from '@angular/router';
 
-import {appRoutes} from 'app/app-routing-module/routes';
+import {appRoutes} from 'app/app-routing-module/app-routes';
+
+import {NavigationComponent} from 'app/app-routing-module/components/navigation/navigation.component';
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(
+            appRoutes,
+            {
+                preloadingStrategy: PreloadAllModules,
+            },
+        ),
+    ],
+    declarations: [
+        NavigationComponent,
     ],
     exports: [
         RouterModule,
