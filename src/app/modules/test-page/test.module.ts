@@ -1,5 +1,6 @@
+import {SecondService} from './pages/di/second.service';
 import {FormsModule} from '@angular/forms';
-import {NgModule} from '@angular/core';
+import {forwardRef, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
     RouterModule,
@@ -24,6 +25,11 @@ import {TestTemplatesComponent} from 'modules/test-page/pages/interpolation/test
 import {BindingChildComponent} from './pages/interpolation/binding-child/binding-child.component';
 import {TestComponentDirectiveComponent} from './pages/directives/test-component-directive/test-component-directive.component';
 import {DirectiveDirective} from './pages/directives/directive.directive';
+import {StructualDirectiveDirective} from './pages/directives/structualDirective.directive';
+import {ComponentDirectiveStructualComponent} from './pages/directives/component-directive-structual/component-directive-structual.component';
+import {TestComponentDiComponent} from './pages/di/test-component-di/test-component-di.component';
+import {MainService} from 'app/modules/test-page/pages/di/main.service';
+import {SecondTestComponentDiComponent} from './pages/di/second-test-component-di/second-test-component-di.component';
 
 export const testModuleRoutes: Routes = [
     {
@@ -59,6 +65,10 @@ export const testModuleRoutes: Routes = [
         path: 'directives',
         component: TestComponentDirectiveComponent,
     },
+    {
+        path: 'di',
+        component: TestComponentDiComponent,
+    },
 ];
 
 @NgModule({
@@ -91,9 +101,24 @@ export const testModuleRoutes: Routes = [
         SlotChildComponent,
 
         DirectiveDirective,
+        ComponentDirectiveStructualComponent,
+        StructualDirectiveDirective,
+        TestComponentDiComponent,
+        SecondTestComponentDiComponent,
     ],
     providers: [
         TestService,
+
+        // тут я в функцию useFactory прокидываю зависимость, которая нам необходима при инжектировании через useFactory, чтобы прокинуть какой то сервис или сущность, нужно, чтобы она была доступна для инжектирования, в массив deps зависимости для функции указываются
+        // {
+        //     provide: MainService,
+        //     useFactory: (data: SecondService) => {
+        //         console.log(data);
+        //         return new MainService();
+        //     },
+        //     deps: [SecondService],
+        //     multi: false,
+        // },
     ],
     exports: [],
 })
