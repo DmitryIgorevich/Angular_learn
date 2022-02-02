@@ -24,6 +24,8 @@ import {TestTemplatesComponent} from 'modules/test-page/pages/interpolation/test
 import {BindingChildComponent} from './pages/interpolation/binding-child/binding-child.component';
 import {TestComponentDirectiveComponent} from './pages/directives/test-component-directive/test-component-directive.component';
 import {DirectiveDirective} from './pages/directives/directive.directive';
+import {StructualDirectiveDirective} from './pages/directives/structualDirective.directive';
+import {ComponentDirectiveStructualComponent} from './pages/directives/component-directive-structual/component-directive-structual.component';
 
 export const testModuleRoutes: Routes = [
     {
@@ -91,6 +93,8 @@ export const testModuleRoutes: Routes = [
         SlotChildComponent,
 
         DirectiveDirective,
+        ComponentDirectiveStructualComponent,
+        StructualDirectiveDirective,
     ],
     providers: [
         TestService,
