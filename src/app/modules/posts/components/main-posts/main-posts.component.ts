@@ -3,23 +3,26 @@ import {
     OnInit,
 } from '@angular/core';
 
+import {
+    AbstractComponent,
+    IAbstractComponentParams
+} from 'modules/base';
+
 @Component({
     selector: '[app-main-posts]',
     templateUrl: './main-posts.component.html',
     styleUrls: ['./main-posts.component.scss'],
 })
-export class MainPostsComponent implements OnInit {
+export class MainPostsComponent extends AbstractComponent<IAbstractComponentParams> implements OnInit {
 
-    constructor() {}
+    constructor() {
+        super({
+            class: 'app-main-posts'
+        });
+    }
 
-    public ngOnInit(): void {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(data => {
-                return data.json();
-            })
-            .then(data => {
-                console.log(data);
-            });
+    public override ngOnInit(): void {
+        super.ngOnInit();
     }
 
 }

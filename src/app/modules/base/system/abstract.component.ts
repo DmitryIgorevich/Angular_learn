@@ -15,7 +15,7 @@ export class AbstractComponent<T extends IAbstractComponentParams> implements On
     ) {}
 
     @HostBinding('class')
-    protected class: string;
+    public class: string;
 
     public ngOnInit(): void {
         this.setHostClass();

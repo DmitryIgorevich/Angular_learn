@@ -1,5 +1,9 @@
-<header>Header</header>
+<header class="{{class}}__header">Header</header>
 
-<p>
-    main-posts works!
-</p>
+<div class="{{class}}__body">
+    <div class="{{class}}__menu"
+        app-post-menu
+    ></div>
+
+    <router-outlet></router-outlet>
+</div>

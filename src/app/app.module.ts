@@ -4,6 +4,7 @@ import {
     NgModule,
 } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from 'app/app-routing-module/app-routing.module';
 
@@ -15,6 +16,7 @@ import {TestModule} from 'modules/test-page/test.module';
         AppComponent,
     ],
     imports: [
+        HttpClientModule,
         BrowserModule,
         AppRoutingModule,
         TestModule,
