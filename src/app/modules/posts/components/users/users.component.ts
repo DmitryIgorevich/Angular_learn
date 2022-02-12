@@ -5,13 +5,12 @@ import {
     OnInit,
 } from '@angular/core';
 
-import {takeUntil} from 'rxjs/operators';
-
 import {
     AbstractComponent,
     IAbstractComponentParams
 } from 'modules/base';
-import {RequestService} from 'modules/base/services';
+import {IUser} from 'modules/posts/system/interfaces';
+import {PostsService} from 'modules/posts/services/posts.service';
 
 @Component({
     selector: '[app-users]',
@@ -23,7 +22,7 @@ export class UsersComponent extends AbstractComponent<IAbstractComponentParams> 
     public users: IUser[];
 
     constructor(
-        protected requestService: RequestService,
+        protected postsService: PostsService,
         protected cdr: ChangeDetectorRef,
     ) {
         super({
@@ -34,42 +33,12 @@ export class UsersComponent extends AbstractComponent<IAbstractComponentParams> 
     public override ngOnInit(): void {
         super.ngOnInit();
 
-        this.requestService.get<IUser[]>('users')
-            .pipe(
-                takeUntil(this.destroy$)
-            )
-            .subscribe(data => {
+        this.postsService.getUsers()
+            .toPromise()
+            .then(data => {
                 this.users = data;
                 this.cdr.markForCheck();
             });
     }
 
-}
-
-export interface IUser {
-    address: IAddress
-    company: ICompany
-    email: string
-    id: number
-    name: string
-    phone: string
-    username: string
-    website: string
-}
-
-export interface IAddress {
-    city: string
-    geo: {
-        lat: string
-        lng: string
-    }
-    street: string
-    suite: string
-    zipcode: string
-}
-
-export interface ICompany {
-    bs: string
-    catchPhrase: string
-    name: string
 }

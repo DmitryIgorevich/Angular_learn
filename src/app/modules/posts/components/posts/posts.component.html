@@ -1,6 +1,8 @@
-<h1>Посты</h1>
+<h1 class="{{class}}__title">Посты</h1>
 
-<div app-post
-    *ngFor="let post of posts"
-    [post]="post"
-></div>
+<div class="{{class}}__list">
+    <div app-post
+        *ngFor="let post of posts"
+        [post]="post"
+    ></div>
+</div>

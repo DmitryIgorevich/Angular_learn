@@ -10,6 +10,11 @@
 
         &__item {}
 
-        &__link {}
+        &__link {
+
+            &.active {
+                color: red;
+            }
+        }
     }
 }

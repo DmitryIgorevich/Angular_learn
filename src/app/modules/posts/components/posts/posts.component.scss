@@ -1,0 +1,20 @@
+.app-posts:host {
+
+    .app-posts {
+
+        &__title {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+    }
+
+    .app-post {
+        margin: 10px;
+    }
+}

@@ -2,17 +2,15 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    DoCheck,
     OnInit
 } from '@angular/core';
 
-import {takeUntil} from 'rxjs/operators';
-
-import {RequestService} from 'modules/base/services';
 import {
     AbstractComponent,
     IAbstractComponentParams
 } from 'modules/base';
+import {IPost} from 'modules/posts/system/interfaces';
+import {PostsService} from 'modules/posts/services/posts.service';
 
 @Component({
     selector: '[app-posts]',
@@ -24,7 +22,7 @@ export class PostsComponent extends AbstractComponent<IAbstractComponentParams> 
     public posts: IPost[];
 
     constructor(
-        protected requestService: RequestService,
+        protected postsService: PostsService,
         protected cdr: ChangeDetectorRef,
     ) {
         super({
@@ -35,20 +33,11 @@ export class PostsComponent extends AbstractComponent<IAbstractComponentParams> 
     public override ngOnInit() {
         super.ngOnInit();
 
-        this.requestService.get<IPost[]>('posts')
-            .pipe(
-                takeUntil(this.destroy$)
-            )
-            .subscribe(data => {
+        this.postsService.getPosts()
+            .toPromise()
+            .then(data => {
                 this.posts = data;
                 this.cdr.markForCheck();
             });
     }
-}
-
-export interface IPost {
-    body: string
-    id: number
-    title: string
-    userId: string
 }

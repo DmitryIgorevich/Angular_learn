@@ -3,6 +3,7 @@ import {
     Injectable
 } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+
 import {Observable} from 'rxjs';
 
 import {BASE_URL_TOKEN} from 'modules/base/system/tokens';
@@ -17,7 +18,8 @@ export class RequestService {
     ) {}
 
     public get<T>(url: string): Observable<T> {
-        console.log(this);
-        return this.http.get<T>(this._baseUrl + url);
+        return this.http.get<T>(
+            this._baseUrl + url,
+        );
     }
 }

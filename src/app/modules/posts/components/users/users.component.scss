@@ -1,0 +1,20 @@
+.app-users:host {
+
+    .app-users {
+
+        &__title {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+    }
+
+    .app-user {
+        margin: 10px;
+    }
+}

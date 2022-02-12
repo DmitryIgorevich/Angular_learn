@@ -2,12 +2,15 @@
     <ul class="{{class}}__list">
         <li class="{{class}}__item">
             <a class="{{class}}__link"
-                [routerLink]="['./']"
+                [routerLink]="['/posts/']"
+                [routerLinkActive]="'active'"
+                [routerLinkActiveOptions]="{exact: true}"
             >Посты</a>
         </li>
         <li class="{{class}}__item">
             <a class="{{class}}__link"
                 [routerLink]="['./users']"
+                [routerLinkActive]="'active'"
             >Пользователи</a>
         </li>
     </ul>

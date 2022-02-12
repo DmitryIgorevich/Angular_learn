@@ -31,13 +31,13 @@
         "arrow-spacing": [1, { "before": true, "after": true }],
         "block-spacing": [1, "never"],
         "brace-style": [1, "1tbs", {"allowSingleLine": true}],
-        "comma-dangle": [0,
+        "comma-dangle": [1,
             {
                 "arrays": "always-multiline",
                 "objects": "always-multiline",
                 "imports": "always-multiline",
                 "exports": "always-multiline",
-                "functions": "never"
+                "functions": "always-multiline"
             }
         ],
         "comma-spacing": [1, {

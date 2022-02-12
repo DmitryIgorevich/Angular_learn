@@ -9,13 +9,14 @@ import {Subject} from 'rxjs';
 @Directive()
 export class AbstractComponent<T extends IAbstractComponentParams> implements OnInit, OnDestroy {
     public destroy$: Subject<void> = new Subject();
+    public class: string;
+
+    @HostBinding('class')
+    private classList: string;
 
     constructor(
         protected params: T,
     ) {}
-
-    @HostBinding('class')
-    public class: string;
 
     public ngOnInit(): void {
         this.setHostClass();
@@ -26,8 +27,43 @@ export class AbstractComponent<T extends IAbstractComponentParams> implements On
         this.destroy$.complete();
     }
 
+    protected addModificator(mod: string | string[]): void {
+        this.changeHostClass(mod);
+    }
+
+    protected removeModificator(mod: string | string[]): void {
+        this.changeHostClass(mod, true);
+    }
+
+    private changeHostClass(mod: string | string[], removeMod: boolean = false): void {
+        if (typeof mod === 'string') {
+            removeMod ? this.removeClass(mod) : this.addUniqClass(mod);
+            return;
+        }
+
+        mod.forEach(item => removeMod ? this.removeClass(item): this.addUniqClass(item));
+    }
+
+    private removeClass(value: string): void {
+        const mod: string = this.class + '--' + value;
+
+        if (this.classList.includes(mod)) {
+            this.classList = this.classList.replace(mod, '');
+        }
+    }
+
+    private addUniqClass(value: string): void {
+        const mod: string = this.class + '--' + value;
+
+        if (this.classList.includes(mod)) {
+            return;
+        }
+
+        this.classList += ' ' + mod;
+    }
+
     private setHostClass(): void {
-        this.class = this.params.class;
+        this.classList = this.class = this.params.class;
     }
 }
 
