@@ -10,13 +10,16 @@ import {
     EMPTY,
     Observable,
 } from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {
+    catchError,
+    delay,
+} from 'rxjs/operators';
 
-import {IPost} from 'modules/posts/system/interfaces';
+import {IComment} from 'modules/posts/system/interfaces';
 import {PostsService} from 'modules/posts/services/posts.service';
 
 @Injectable()
-export class PostResolver implements Resolve<IPost> {
+export class CommentsResolver implements Resolve<IComment[]> {
 
     constructor(
         private postsService: PostsService,
@@ -27,9 +30,10 @@ export class PostResolver implements Resolve<IPost> {
     public resolve(
         routeSnapshot: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
-    ): IPost | Observable<IPost> | Promise<IPost> {
-        return this.postsService.getPost(routeSnapshot.params.id)
+    ): IComment[] | Observable<IComment[]> | Promise<IComment[]> {
+        return this.postsService.getPostsComments(routeSnapshot.parent?.params.id)
             .pipe(
+                delay(1000),
                 catchError(() => {
                     this.router.navigate(['/posts']);
                     return EMPTY;

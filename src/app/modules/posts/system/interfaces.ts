@@ -32,3 +32,11 @@ export interface ICompany {
     catchPhrase: string
     name: string
 }
+
+export interface IComment {
+    postId: number
+    id: number
+    name: string
+    email: string
+    body: string
+}

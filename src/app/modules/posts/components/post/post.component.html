@@ -3,6 +3,7 @@
         <ng-container [ngTemplateOutlet]="title"></ng-container>
         <p class="{{class}}__text">{{post.body}}</p>
         <ng-container [ngTemplateOutlet]="infoPost"></ng-container>
+        <a [routerLink]="['/posts/post', post.id, 'comments']">Комментарии</a>
     </div>
 </ng-container>
 
@@ -13,6 +14,9 @@
         <a class="{{class}}__post-link" [routerLink]="['/posts/post', post.id]"></a>
     </div>
 </ng-template>
+
+
+<router-outlet></router-outlet>
 
 
 <ng-template #infoPost>

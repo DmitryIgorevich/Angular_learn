@@ -1,0 +1,14 @@
+<div class="{{class}}__body">
+    <ng-container *ngIf="isCommentPage; else default">
+        <span class="{{class}}__author">{{comment.email}}</span>
+        <h4 class="{{class}}__title">{{comment.name}}</h4>
+    </ng-container>
+</div>
+
+<ng-template #default>
+    <span class="{{class}}__author">{{comment.email}}</span>
+    <h4 class="{{class}}__title">{{comment.name}}</h4>
+    <a class="{{class}}__link"
+        [routerLink]="['/posts/comments', comment.id]"
+    ></a>
+</ng-template>

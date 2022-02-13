@@ -8,8 +8,6 @@ import {TestComponent} from 'modules/test-page/pages/test/test.component';
 
 import {MarketComponent} from 'modules/market-page/components/market/market.component';
 
-import {MainPostsComponent} from 'modules/posts/components';
-
 export const appRoutes: Routes = [
     {
         path: '',
@@ -31,7 +29,6 @@ export const appRoutes: Routes = [
     },
     {
         path: 'posts',
-        component: MainPostsComponent,
         loadChildren: () => import('app/modules/posts/posts.module').then(module => module.PostsModule),
     },
 ];

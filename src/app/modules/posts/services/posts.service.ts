@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 
 import {RequestService} from 'modules/base/services';
 import {
+    IComment,
     IPost,
     IUser,
 } from 'modules/posts/system/interfaces';
@@ -12,11 +13,11 @@ import {
 export class PostsService {
 
     constructor(
-        private requestService: RequestService
+        private requestService: RequestService,
     ) { }
 
     public getPosts(): Observable<IPost[]> {
-        return this.requestService.get('posts');
+        return this.requestService.get('posts/');
     }
 
     public getPost(id: number): Observable<IPost> {
@@ -24,10 +25,22 @@ export class PostsService {
     }
 
     public getUsers(): Observable<IUser[]> {
-        return this.requestService.get('users');
+        return this.requestService.get('users/');
     }
 
     public getUser(id: number): Observable<IUser> {
         return this.requestService.get('users/' + id);
+    }
+
+    public getComments(): Observable<IComment> {
+        return this.requestService.get('comments/');
+    }
+
+    public getComment(id: number): Observable<IComment> {
+        return this.requestService.get('comments/' + id);
+    }
+
+    public getPostsComments(id: number): Observable<IComment[]> {
+        return this.requestService.get('posts/' + id + '/comments');
     }
 }

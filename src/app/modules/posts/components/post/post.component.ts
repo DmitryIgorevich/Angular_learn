@@ -2,7 +2,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     Input,
-    OnInit
+    OnInit,
 } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
@@ -16,7 +16,7 @@ import {IPost} from 'modules/posts/system/interfaces';
     selector: '[app-post]',
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostComponent extends AbstractComponent<IAbstractComponentParams> implements OnInit {
     @Input()
@@ -28,15 +28,15 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
         protected route: ActivatedRoute,
     ) {
         super({
-            class: 'app-post'
+            class: 'app-post',
         });
     }
 
     public override ngOnInit(): void {
         super.ngOnInit();
 
-        if (!this.post && this.route.routeConfig?.path === 'post/:id') {
-            this.post = this.route.snapshot.data.post;
+        if (!this.post) {
+            this.post = this.route.snapshot.data.PostResolver;
             this.isPostPage = true;
             this.addModificator('post-page');
         }

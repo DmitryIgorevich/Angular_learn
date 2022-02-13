@@ -12,11 +12,11 @@ import {
 } from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
-import {IPost} from 'modules/posts/system/interfaces';
+import {IComment} from 'modules/posts/system/interfaces';
 import {PostsService} from 'modules/posts/services/posts.service';
 
 @Injectable()
-export class PostResolver implements Resolve<IPost> {
+export class CommentResolver implements Resolve<IComment> {
 
     constructor(
         private postsService: PostsService,
@@ -27,8 +27,9 @@ export class PostResolver implements Resolve<IPost> {
     public resolve(
         routeSnapshot: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
-    ): IPost | Observable<IPost> | Promise<IPost> {
-        return this.postsService.getPost(routeSnapshot.params.id)
+    ): IComment | Observable<IComment> | Promise<IComment> {
+
+        return this.postsService.getComment(routeSnapshot.params.id)
             .pipe(
                 catchError(() => {
                     this.router.navigate(['/posts']);
