@@ -2,7 +2,7 @@ import {
     Directive,
     HostBinding,
     OnDestroy,
-    OnInit
+    OnInit,
 } from '@angular/core';
 import {Subject} from 'rxjs';
 

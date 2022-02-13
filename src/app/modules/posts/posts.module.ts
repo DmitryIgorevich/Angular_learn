@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
 import {PostsRoutingModule} from 'modules/posts/posts-routing.module';
+import {BaseModule} from 'modules/base/base.module';
+
 import {MainPostsComponent} from 'modules/posts/components/main-posts/main-posts.component';
 import {PostMenuComponent} from 'modules/posts/components/post-menu/post-menu.component';
 import {PostsComponent} from 'modules/posts/components/posts/posts.component';
@@ -30,6 +32,7 @@ const BASE_URL: string = 'https://jsonplaceholder.typicode.com/';
         RouterModule,
 
         PostsRoutingModule,
+        BaseModule,
     ],
     declarations: [
         MainPostsComponent,

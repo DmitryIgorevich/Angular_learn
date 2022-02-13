@@ -73,7 +73,7 @@ export const testModuleRoutes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(testModuleRoutes),
+        RouterModule.forChild(testModuleRoutes),
         CommonModule,
         FormsModule,
     ],
