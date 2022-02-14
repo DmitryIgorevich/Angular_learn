@@ -25,3 +25,31 @@
         }
     }
 }
+
+.app-comment.app-comment--comment-page:host {
+
+    .app-comment {
+
+        &__body {
+        }
+
+        &__author {
+            font-size: 20px;
+        }
+
+        &__title {
+            font-size: 20px;
+        }
+
+        &__text {
+            margin: 15px 0 0 0;
+            font-size: 18px;
+        }
+
+        &__link-post {
+            font-size: 16px;
+            display: inline-block;
+            margin: 30px 0 0 0;
+        }
+    }
+}

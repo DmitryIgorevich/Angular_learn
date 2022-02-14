@@ -28,6 +28,7 @@ import {TestModule} from 'modules/test-page/test.module';
     bootstrap: [],
 })
 export class AppModule implements DoBootstrap {
+
     public ngDoBootstrap(applicationRef: ApplicationRef): void {
         applicationRef.bootstrap(AppComponent);
     }

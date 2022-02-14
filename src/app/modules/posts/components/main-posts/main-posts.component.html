@@ -1,9 +1,15 @@
 <header class="{{class}}__header">Header</header>
 
+<div class="{{class}}__paths"
+    app-paths
+></div>
+
 <div class="{{class}}__body">
     <div class="{{class}}__menu"
         app-post-menu
     ></div>
 
-    <router-outlet></router-outlet>
+    <div class="{{class}}__content">
+        <router-outlet></router-outlet>
+    </div>
 </div>

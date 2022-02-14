@@ -2,6 +2,10 @@
     <ng-container *ngIf="isCommentPage; else default">
         <span class="{{class}}__author">{{comment.email}}</span>
         <h4 class="{{class}}__title">{{comment.name}}</h4>
+        <p class="{{class}}__text">{{comment.body}}</p>
+        <a class="{{class}}__link-post"
+            [routerLink]="['/posts/post', comment.postId]"
+        >К посту</a>
     </ng-container>
 </div>
 

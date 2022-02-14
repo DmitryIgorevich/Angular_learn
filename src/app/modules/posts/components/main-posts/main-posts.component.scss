@@ -6,8 +6,9 @@
     ::ng-deep {
 
         .app-posts,
-        .app-users {
-            width: 100%;
+        .app-users,
+        .app-comment {
+            flex: 1 1 auto;
         }
     }
 
@@ -28,6 +29,11 @@
         &__menu {
             flex: 0 0 20%;
             background-color: rgb(180, 198, 216);
+        }
+
+        &__content {
+            flex: 1 1 auto;
+            display: flex;
         }
     }
 }
