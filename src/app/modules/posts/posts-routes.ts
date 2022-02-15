@@ -23,18 +23,28 @@ export const postsRoutes: Route[] = [
                 component: PostsComponent,
             },
             {
-                path: 'post/:id',
-                component: PostComponent,
-                resolve: {
-                    PostResolver,
-                },
+                path: 'post',
                 children: [
                     {
-                        path: 'comments',
-                        component: CommentsComponent,
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: '/posts',
+                    },
+                    {
+                        path: ':id',
+                        component: PostComponent,
                         resolve: {
-                            CommentsResolver,
+                            PostResolver,
                         },
+                        children: [
+                            {
+                                path: 'comments',
+                                component: CommentsComponent,
+                                resolve: {
+                                    CommentsResolver,
+                                },
+                            },
+                        ],
                     },
                 ],
             },

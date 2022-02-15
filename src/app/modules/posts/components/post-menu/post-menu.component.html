@@ -14,5 +14,13 @@
                 [routerLinkActiveOptions]="{exact: true}"
             >Пользователи</a>
         </li>
+        <li class="{{class}}__item">
+            <a class="{{class}}__link"
+                [routerLink]="['./posts/']"
+                [queryParams]="{value: true, data: 6}"
+                [routerLinkActive]="'active'"
+                [routerLinkActiveOptions]="{exact: true}"
+            >f</a>
+        </li>
     </ul>
 </nav>

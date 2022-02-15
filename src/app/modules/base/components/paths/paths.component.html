@@ -1,3 +1,4 @@
-<p>
-  paths works!
-</p>
+<ng-container *ngFor="let url of urls; index as index">
+    <a [routerLink]="index | linkUrls : urls">{{urls[index] || 'Главная'}}</a>
+    <span>/</span>
+</ng-container>

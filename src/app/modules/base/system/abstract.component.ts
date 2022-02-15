@@ -27,6 +27,15 @@ export class AbstractComponent<T extends IAbstractComponentParams> implements On
         this.destroy$.complete();
     }
 
+    public get mockGetter(): string {
+        console.log('mockGetter');
+        return 'test';
+    }
+
+    public mockMethod(): void {
+        console.log('mockMethod');
+    }
+
     protected addModificator(mod: string | string[]): void {
         this.changeHostClass(mod);
     }

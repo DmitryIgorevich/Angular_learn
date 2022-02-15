@@ -1,9 +1,19 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     OnInit,
 } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {
+    ActivatedRoute,
+    NavigationEnd,
+    Router,
+} from '@angular/router';
+
+import {
+    filter,
+    takeUntil,
+} from 'rxjs/operators';
 
 import {
     AbstractComponent,
@@ -17,10 +27,12 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PathsComponent extends AbstractComponent<IAbstractComponentParams> implements OnInit {
+    public urls: string[];
 
     constructor(
         protected router: Router,
         protected route: ActivatedRoute,
+        protected cdr: ChangeDetectorRef,
     ) {
         super({
             class: 'app-paths',
@@ -29,15 +41,23 @@ export class PathsComponent extends AbstractComponent<IAbstractComponentParams> 
 
     public override ngOnInit(): void {
         super.ngOnInit();
-        console.log(this.router);
-        console.log(this.route);
 
-        console.log(this.route.pathFromRoot);
-
-        this.route.url.subscribe(data => {
-            console.log(data);
-        });
-
+        this.parseUrl(this.router.url);
+        this.router.events
+            .pipe(
+                takeUntil(this.destroy$),
+                filter(event => event instanceof NavigationEnd),
+            )
+            .subscribe(event => {
+                if (event instanceof NavigationEnd) {
+                    this.parseUrl(event.urlAfterRedirects);
+                    this.cdr.markForCheck();
+                }
+            });
     }
 
+    protected parseUrl(url: string): void {
+        const urls = url.split('/');
+        this.urls = urls;
+    }
 }
