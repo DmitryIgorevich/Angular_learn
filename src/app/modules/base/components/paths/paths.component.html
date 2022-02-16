@@ -1,4 +1,4 @@
 <ng-container *ngFor="let url of urls; index as index">
-    <a [routerLink]="index | linkUrls : urls">{{urls[index] || 'Главная'}}</a>
+    <a [routerLink]="index | linkUrls : urls">{{index | linkUrls : urls : true}}</a>
     <span>/</span>
 </ng-container>

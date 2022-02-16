@@ -8,9 +8,23 @@ import {
 })
 export class LinkUrlsPipe implements PipeTransform {
 
-    transform(index: number, urls: string[]): any {
-        const arrayPaths = urls.slice(0, index + 1).filter(item => !!item);
-        return '/' + arrayPaths.join('/');
+    transform(index: number, urls: string[], getName: boolean = false): string {
+        const arrayPaths = urls.slice(0, index + 1)
+            .map(item => {
+                const match = item.match(/^[A-z0-9]+/);
+
+                if (match) {
+                    return match[0];
+                }
+
+                return item;
+            });
+
+        if (getName) {
+            return arrayPaths[index] || 'Главная';
+        }
+
+        return arrayPaths.join('/');
     }
 
 }
