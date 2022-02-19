@@ -10,7 +10,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from 'app/app-routing-module/app-routing.module';
 
 import {AppComponent} from 'app/app-component/app.component';
-import {TestModule} from 'modules/test-page/test.module';
 
 @NgModule({
     declarations: [
@@ -22,7 +21,6 @@ import {TestModule} from 'modules/test-page/test.module';
         BrowserAnimationsModule,
 
         AppRoutingModule,
-        TestModule,
     ],
     providers: [],
     bootstrap: [],
