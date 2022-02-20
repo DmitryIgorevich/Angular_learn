@@ -20,6 +20,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'posts',
-        loadChildren: () => import('app/modules/posts/posts.module').then(module => module.PostsModule),
+        loadChildren: () => import('app/modules/posts/posts.module')
+            .then(module => module.PostsModule),
     },
 ];

@@ -28,6 +28,6 @@ import {AppComponent} from 'app/app-component/app.component';
 export class AppModule implements DoBootstrap {
 
     public ngDoBootstrap(applicationRef: ApplicationRef): void {
-        applicationRef.bootstrap(AppComponent);
+        applicationRef.bootstrap(AppComponent, '#root');
     }
 }

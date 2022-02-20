@@ -3,8 +3,12 @@
         <a [routerLink]="['/posts/users', user.id]">{{user.name}}</a>
     </h4>
     <a class="{{class}}__phone" href="tel:{{user.phone}}">{{user.phone}}</a>
-    <div class="{{class}}__site"
-        *ngIf="user.website">
-        Сайт пользователя <a class="{{class}}__site-link" href="{{user.website}}">{{user.website}}</a>
+    <div *ngIf="user.website"
+        class="{{class}}__site"
+        >cайт:
+        <a class="{{class}}__site-link" href="{{user.website}}">{{user.website}}</a>
     </div>
+    <p><a (click)="togglePosts($event)" href="">Показать посты</a></p>
 </div>
+
+<router-outlet></router-outlet>

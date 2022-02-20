@@ -4,7 +4,10 @@ import {
     Input,
     OnInit,
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
 
 import {
     AbstractComponent,
@@ -24,8 +27,11 @@ export class UserComponent extends AbstractComponent<IAbstractComponentParams> i
 
     public isUserPage: boolean = false;
 
+    protected isPostsVisible: boolean = false;
+
     constructor(
         protected route: ActivatedRoute,
+        protected router: Router,
     ) {
         super({
             class: 'app-user',
@@ -35,10 +41,33 @@ export class UserComponent extends AbstractComponent<IAbstractComponentParams> i
     public override ngOnInit(): void {
         super.ngOnInit();
 
-        if (!this.user) {
-            this.user = this.route.snapshot.data.user;
-            this.isUserPage = true;
-            this.addModificator('user-page');
+        this.initPostsVisibility();
+        this.getUser();
+    }
+
+    public togglePosts(event: Event): void {
+        event.preventDefault();
+
+        this.router.navigate(
+            [this.isPostsVisible ? ('../' + this.user.id) : 'posts'],
+            {relativeTo: this.route},
+        );
+        this.isPostsVisible = !this.isPostsVisible;
+    }
+
+    protected getUser(): void {
+        if (this.user) {
+            return;
+        }
+
+        this.user = this.route.snapshot.data.UserResolver;
+        this.isUserPage = true;
+        this.addModificator('user-page');
+    }
+
+    protected initPostsVisibility(): void {
+        if (this.router.url.match(this.route.snapshot.params.id + '/posts')) {
+            this.isPostsVisible = true;
         }
     }
 }

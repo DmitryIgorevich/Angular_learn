@@ -26,11 +26,6 @@ export const postsRoutes: Route[] = [
                 path: 'post',
                 children: [
                     {
-                        path: '',
-                        pathMatch: 'full',
-                        redirectTo: '/posts',
-                    },
-                    {
                         path: ':id',
                         component: PostComponent,
                         resolve: {
@@ -45,6 +40,10 @@ export const postsRoutes: Route[] = [
                                 },
                             },
                         ],
+                    },
+                    {
+                        path: '',
+                        redirectTo: '/posts',
                     },
                 ],
             },
@@ -66,8 +65,14 @@ export const postsRoutes: Route[] = [
                         path: ':id',
                         component: UserComponent,
                         resolve: {
-                            user: UserResolver,
+                            UserResolver,
                         },
+                        children: [
+                            {
+                                path: 'posts',
+                                component: PostsComponent,
+                            },
+                        ],
                     },
                 ],
             },

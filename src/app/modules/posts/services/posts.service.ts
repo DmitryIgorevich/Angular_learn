@@ -32,6 +32,10 @@ export class PostsService {
         return this.requestService.get('users/' + id);
     }
 
+    public getUserPosts(id: number): Observable<IPost[]> {
+        return this.requestService.get('users/' + id + '/posts');
+    }
+
     public getComments(): Observable<IComment> {
         return this.requestService.get('comments/');
     }

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import {
     AbstractComponent,
-    IAbstractComponentParams
+    IAbstractComponentParams,
 } from 'app/modules/base';
 
 @Component({
