@@ -1,8 +1,8 @@
 export interface IPost {
-    body: string
     id: number
-    title: string
     userId: string
+    title: string
+    body: string
 }
 
 export interface IUser {

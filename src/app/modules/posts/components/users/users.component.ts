@@ -7,7 +7,7 @@ import {
 
 import {
     AbstractComponent,
-    IAbstractComponentParams
+    IAbstractComponentParams,
 } from 'modules/base';
 import {IUser} from 'modules/posts/system/interfaces';
 import {PostsService} from 'modules/posts/services/posts.service';
@@ -26,7 +26,7 @@ export class UsersComponent extends AbstractComponent<IAbstractComponentParams> 
         protected cdr: ChangeDetectorRef,
     ) {
         super({
-            class: 'app-users'
+            class: 'app-users',
         });
     }
 

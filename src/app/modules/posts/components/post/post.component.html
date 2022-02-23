@@ -4,6 +4,10 @@
         <p class="{{class}}__text">{{post.body}}</p>
         <ng-container [ngTemplateOutlet]="infoPost"></ng-container>
         <a [routerLink]="['/posts/post', post.id, 'comments']">Комментарии</a>
+        <p class="{{class}}__edit">
+            <button class="{{class}}__edit-button" (click)="toggleForm()">Редактировать</button>
+        </p>
+        <ng-container *ngIf="isFormVisible" [ngTemplateOutlet]="formTemplate"></ng-container>
     </div>
 </ng-container>
 
@@ -28,4 +32,22 @@
 
 <ng-template #title>
     <h5 class="{{class}}__title">{{post.title}}</h5>
+</ng-template>
+
+<ng-template #formTemplate>
+    <form class="{{class}}__form"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+    >
+        <div app-input
+            [control]="titleControl"
+            [placeholder]="'Заголовок'"
+        ></div>
+        <!-- <div app-input
+            [control]="bodyControl"
+            [placeholder]="'Текст'"
+        ></div> -->
+
+        <button class="{{class}}__form-button" type="submit">Отправить</button>
+    </form>
 </ng-template>

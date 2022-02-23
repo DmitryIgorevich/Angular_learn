@@ -1,0 +1,12 @@
+<label class="{{class}}__label" for="{{name}}">{{name}}</label>
+<input class="{{class}}__input"
+    [type]="type"
+    [id]="name"
+    [placeholder]="placeholder"
+    [formControl]="control"
+>
+<p class="{{class}}__error"
+    *ngIf="error && control.touched"
+>{{error}}</p>
+
+<div app-mock></div>

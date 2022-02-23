@@ -6,6 +6,8 @@ import {
     OnInit,
 } from '@angular/core';
 
+import {delay} from 'rxjs/operators';
+
 import {
     AbstractComponent,
     IAbstractComponentParams,
@@ -13,7 +15,6 @@ import {
 
 import {IPost} from 'modules/posts/system/interfaces';
 import {PostsService} from 'modules/posts/services/posts.service';
-import {delay} from 'rxjs/operators';
 
 @Component({
     selector: '[app-posts]',

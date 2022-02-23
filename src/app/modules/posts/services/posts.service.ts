@@ -47,4 +47,8 @@ export class PostsService {
     public getPostsComments(id: number): Observable<IComment[]> {
         return this.requestService.get('posts/' + id + '/comments');
     }
+
+    public updatePost(id: number, body: IPost): Observable<IPost> {
+        return this.requestService.patch<IPost>('posts/' + id, body);
+    }
 }

@@ -1,0 +1,14 @@
+.app-input:host {
+
+    .app-input {
+
+        &__label {
+        }
+
+        &__input {
+            margin: 10px 0 0 0;
+            border: 1px solid black;
+            padding: 5px 10px;
+        }
+    }
+}

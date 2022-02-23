@@ -25,4 +25,8 @@ export class MockComponent extends AbstractComponent<IAbstractComponentParams> i
         super.ngOnInit();
     }
 
+    public get test(): string {
+        console.log('MOCK getter');
+        return 'MOCK';
+    }
 }

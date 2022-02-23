@@ -48,11 +48,11 @@ const BASE_URL: string = 'https://jsonplaceholder.typicode.com/';
     ],
     providers: [
         RequestService,
+        PostsService,
         {
             provide: BASE_URL_TOKEN,
             useValue: BASE_URL,
         },
-        PostsService,
 
         PostResolver,
         UserResolver,
