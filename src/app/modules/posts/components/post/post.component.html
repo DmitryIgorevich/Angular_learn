@@ -42,11 +42,13 @@
         <div app-input
             [control]="titleControl"
             [placeholder]="'Заголовок'"
+            [updateControl$]="updateControl$"
         ></div>
-        <!-- <div app-input
+        <div app-input
             [control]="bodyControl"
             [placeholder]="'Текст'"
-        ></div> -->
+            [updateControl$]="updateControl$"
+        ></div>
 
         <button class="{{class}}__form-button" type="submit">Отправить</button>
     </form>

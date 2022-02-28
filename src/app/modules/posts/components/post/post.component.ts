@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 
+import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 import {
@@ -20,6 +21,11 @@ import {
 } from 'modules/base';
 import {IPost} from 'modules/posts/system/interfaces';
 import {PostsService} from 'modules/posts/services/posts.service';
+import {forbiddenSubstring} from 'modules/posts/system/validators/sync-validators.validator';
+import {
+    LettersRequired,
+    lettersRequired,
+} from 'modules/posts/system/validators/async-validators.validator';
 
 @Component({
     selector: '[app-post]',
@@ -36,8 +42,10 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
     public titleControl: FormControl;
     public bodyControl: FormControl;
     public form: FormGroup;
+    public updateControl$: Subject<void> = new Subject();
 
     constructor(
+        protected lettersRequired:LettersRequired,
         protected route: ActivatedRoute,
         protected postsService: PostsService,
         protected cdr: ChangeDetectorRef,
@@ -64,7 +72,10 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
     }
 
     public onSubmit(): void {
-        this.cdr.detectChanges();
+        console.log(this.form);
+        this.form.markAllAsTouched();
+        this.updateControl$.next();
+
         if (this.form.invalid) {
             return;
         }
@@ -84,13 +95,24 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
         this.titleControl = new FormControl('', {
             validators: [
                 Validators.required,
+                forbiddenSubstring(/хуй/gi),
+            ],
+            asyncValidators: [
+                // lettersRequired(),
+                this.lettersRequired.validate.bind(this.lettersRequired),
             ],
         });
         this.bodyControl = new FormControl('', {
             validators: [
                 Validators.required,
+                forbiddenSubstring(/хуй/gi),
+            ],
+            asyncValidators: [
+                // lettersRequired(),
+                this.lettersRequired.validate,
             ],
         });
+        console.log(this);
 
         this.form = new FormGroup({
             title: this.titleControl,

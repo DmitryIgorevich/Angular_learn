@@ -1,10 +1,18 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     Input,
     OnInit,
 } from '@angular/core';
 import {FormControl} from '@angular/forms';
+
+import {EMPTY, Subject} from 'rxjs';
+import {
+    catchError,
+    takeUntil,
+} from 'rxjs/operators';
+
 import {
     AbstractComponent,
     IAbstractComponentParams,
@@ -29,7 +37,12 @@ export class InputComponent extends AbstractComponent<IAbstractComponentParams> 
     @Input()
     public name: string;
 
-    constructor() {
+    @Input()
+    public updateControl$: Subject<void>;
+
+    constructor(
+        protected cdr: ChangeDetectorRef,
+    ) {
         super({
             class: 'app-input',
         });
@@ -37,11 +50,14 @@ export class InputComponent extends AbstractComponent<IAbstractComponentParams> 
 
     public override ngOnInit(): void {
         super.ngOnInit();
+
+        this.updateControl$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(() => this.cdr.markForCheck());
     }
 
     public get error(): string {
         const errors = this.control.errors;
-        console.log('getter');
 
         if (errors) {
             return 'ошибка';

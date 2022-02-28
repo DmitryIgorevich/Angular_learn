@@ -16,3 +16,11 @@
         [routerLink]="['/posts/comments', comment.id]"
     ></a>
 </ng-template>
+
+<form [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+>
+    <input formControlName="name" type="text" placeholder="Имя">
+    <input formControlName="body" type="text" placeholder="Текст">
+    <button type="submit">Отправить</button>
+</form>

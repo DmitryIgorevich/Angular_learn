@@ -5,6 +5,13 @@ import {
     Input,
     OnInit,
 } from '@angular/core';
+import {
+    FormBuilder,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
+
+import {Subject} from 'rxjs';
 
 import {
     AbstractComponent,
@@ -24,10 +31,13 @@ export class CommentComponent extends AbstractComponent<IAbstractComponentParams
     public comment: IComment;
 
     public isCommentPage: boolean;
+    public form: FormGroup;
+    public updateControl$: Subject<void> = new Subject();
 
     constructor(
         protected postsService: PostsService,
         protected route: ActivatedRoute,
+        protected fb: FormBuilder,
     ) {
         super({
             class: 'app-comment',
@@ -42,5 +52,18 @@ export class CommentComponent extends AbstractComponent<IAbstractComponentParams
             this.isCommentPage = true;
             this.addModificator('comment-page');
         }
+
+        this.initForm();
+    }
+
+    public onSubmit(): void {
+        console.log(this.form);
+    }
+
+    protected initForm(): void {
+        this.form = this.fb.group({
+            name: ['', {validators: [Validators.required]}],
+            body: ['', {validators: [Validators.required]}],
+        });
     }
 }

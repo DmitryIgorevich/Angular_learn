@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     OnInit,
 } from '@angular/core';
@@ -12,6 +13,7 @@ import {
     selector: '[app-mock]',
     templateUrl: './mock.component.html',
     styleUrls: ['./mock.component.scss'],
+    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MockComponent extends AbstractComponent<IAbstractComponentParams> implements OnInit {
 
