@@ -7,11 +7,8 @@ import {
 } from '@angular/core';
 import {FormControl} from '@angular/forms';
 
-import {EMPTY, Subject} from 'rxjs';
-import {
-    catchError,
-    takeUntil,
-} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 import {
     AbstractComponent,
@@ -53,7 +50,9 @@ export class InputComponent extends AbstractComponent<IAbstractComponentParams> 
 
         this.updateControl$
             .pipe(takeUntil(this.destroy$))
-            .subscribe(() => this.cdr.markForCheck());
+            .subscribe(() => {
+                this.cdr.markForCheck();
+            });
     }
 
     public get error(): string {

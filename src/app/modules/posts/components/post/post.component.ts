@@ -13,7 +13,7 @@ import {
 import {ActivatedRoute} from '@angular/router';
 
 import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {filter, takeUntil} from 'rxjs/operators';
 
 import {
     AbstractComponent,
@@ -45,7 +45,7 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
     public updateControl$: Subject<void> = new Subject();
 
     constructor(
-        protected lettersRequired:LettersRequired,
+        protected lettersRequired: LettersRequired,
         protected route: ActivatedRoute,
         protected postsService: PostsService,
         protected cdr: ChangeDetectorRef,
@@ -72,11 +72,10 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
     }
 
     public onSubmit(): void {
-        console.log(this.form);
         this.form.markAllAsTouched();
         this.updateControl$.next();
 
-        if (this.form.invalid) {
+        if (this.form.invalid || this.form.status === 'PENDING') {
             return;
         }
 
@@ -98,7 +97,7 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
                 forbiddenSubstring(/хуй/gi),
             ],
             asyncValidators: [
-                // lettersRequired(),
+                lettersRequired(),
                 this.lettersRequired.validate.bind(this.lettersRequired),
             ],
         });
@@ -109,14 +108,22 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
             ],
             asyncValidators: [
                 // lettersRequired(),
-                this.lettersRequired.validate,
+                this.lettersRequired.validate.bind(this.lettersRequired),
             ],
         });
-        console.log(this);
 
         this.form = new FormGroup({
             title: this.titleControl,
             body: this.bodyControl,
         });
+
+        this.form.statusChanges
+            .pipe(
+                takeUntil(this.destroy$),
+                filter(status => status !== 'DISABLED' && status !== 'PENDING'),
+            )
+            .subscribe(() => {
+                this.updateControl$.next();
+            });
     }
 }

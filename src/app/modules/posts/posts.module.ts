@@ -20,6 +20,7 @@ import {CommentsResolver} from 'modules/posts/resolver/comments.resolver';
 import {CommentResolver} from 'modules/posts/resolver/comment.resolver';
 
 import {PostsService} from 'modules/posts/services/posts.service';
+import {LettersRequired} from 'modules/posts/system/validators/async-validators.validator';
 import {RequestService} from 'modules/base/services';
 
 import {BASE_URL_TOKEN} from 'modules/base';
@@ -58,6 +59,8 @@ const BASE_URL: string = 'https://jsonplaceholder.typicode.com/';
         UserResolver,
         CommentsResolver,
         CommentResolver,
+
+        LettersRequired,
     ],
 })
 export class PostsModule {}

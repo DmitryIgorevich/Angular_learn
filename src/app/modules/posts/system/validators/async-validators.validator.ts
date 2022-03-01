@@ -5,7 +5,11 @@ import {
     AsyncValidatorFn,
     ValidationErrors,
 } from '@angular/forms';
-import {Observable, of} from 'rxjs';
+
+import {
+    Observable,
+    of,
+} from 'rxjs';
 import {
     catchError,
     delay,
@@ -16,7 +20,7 @@ export function lettersRequired(): AsyncValidatorFn {
     return (control: AbstractControl) => {
         const isForbid = (/\wА-яЁ/).test(control.value);
 
-        return of()
+        return of(1)
             .pipe(
                 delay(2000),
                 map(() => {
@@ -26,7 +30,7 @@ export function lettersRequired(): AsyncValidatorFn {
     };
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class LettersRequired implements AsyncValidator {
     validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
         const isForbid = (/\w/).test(control.value);

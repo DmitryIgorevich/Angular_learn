@@ -5,11 +5,16 @@ import {
 } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {
+    HttpClientModule,
+    HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 
 import {AppRoutingModule} from 'app/app-routing-module/app-routing.module';
 
 import {AppComponent} from 'app/app-component/app.component';
+
+import {InterceptorService} from 'modules/base/system/interceptors/interceptor.service';
 
 @NgModule({
     declarations: [
@@ -22,7 +27,13 @@ import {AppComponent} from 'app/app-component/app.component';
 
         AppRoutingModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: InterceptorService,
+            multi: true,
+        },
+    ],
     bootstrap: [],
 })
 export class AppModule implements DoBootstrap {

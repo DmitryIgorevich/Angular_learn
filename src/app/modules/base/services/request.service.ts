@@ -2,7 +2,7 @@ import {
     Inject,
     Injectable,
 } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 import {EMPTY, Observable} from 'rxjs';
 
@@ -15,7 +15,6 @@ export class RequestService {
     constructor(
         @Inject(BASE_URL_TOKEN)
         private _baseUrl: string,
-
         private http: HttpClient,
     ) {}
 
