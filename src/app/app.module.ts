@@ -11,6 +11,7 @@ import {
 } from '@angular/common/http';
 
 import {AppRoutingModule} from 'app/app-routing-module/app-routing.module';
+import {MarketModule} from 'modules/market-page/market.module';
 
 import {AppComponent} from 'app/app-component/app.component';
 
@@ -26,6 +27,7 @@ import {InterceptorService} from 'modules/base/system/interceptors/interceptor.s
         BrowserAnimationsModule,
 
         AppRoutingModule,
+        MarketModule,
     ],
     providers: [
         {

@@ -15,7 +15,7 @@ import {
     styleUrls: ['./main-posts.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainPostsComponent extends AbstractComponent<IAbstractComponentParams> implements OnInit {
+export class MainPostsComponent extends AbstractComponent<IAbstractComponentParams> implements OnInit, ITest {
 
     constructor() {
         super({
@@ -26,4 +26,12 @@ export class MainPostsComponent extends AbstractComponent<IAbstractComponentPara
     public override ngOnInit(): void {
         super.ngOnInit();
     }
+
+    public test(): string {
+        return '';
+    }
+}
+
+interface ITest {
+    test: () => void
 }

@@ -50,9 +50,7 @@ export class InputComponent extends AbstractComponent<IAbstractComponentParams> 
 
         this.updateControl$
             .pipe(takeUntil(this.destroy$))
-            .subscribe(() => {
-                this.cdr.markForCheck();
-            });
+            .subscribe(() => this.cdr.markForCheck());
     }
 
     public get error(): string {

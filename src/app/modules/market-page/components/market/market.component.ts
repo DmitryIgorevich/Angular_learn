@@ -13,6 +13,5 @@ export class MarketComponent implements OnInit {
     constructor() { }
 
     public ngOnInit() {
-        console.log(1);
     }
 }

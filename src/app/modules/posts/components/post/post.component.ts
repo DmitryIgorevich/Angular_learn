@@ -13,7 +13,10 @@ import {
 import {ActivatedRoute} from '@angular/router';
 
 import {Subject} from 'rxjs';
-import {filter, takeUntil} from 'rxjs/operators';
+import {
+    filter,
+    takeUntil,
+} from 'rxjs/operators';
 
 import {
     AbstractComponent,
@@ -107,7 +110,7 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
                 forbiddenSubstring(/хуй/gi),
             ],
             asyncValidators: [
-                // lettersRequired(),
+                lettersRequired(),
                 this.lettersRequired.validate.bind(this.lettersRequired),
             ],
         });
@@ -122,8 +125,6 @@ export class PostComponent extends AbstractComponent<IAbstractComponentParams> i
                 takeUntil(this.destroy$),
                 filter(status => status !== 'DISABLED' && status !== 'PENDING'),
             )
-            .subscribe(() => {
-                this.updateControl$.next();
-            });
+            .subscribe(() => this.updateControl$.next());
     }
 }

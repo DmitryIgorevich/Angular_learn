@@ -22,6 +22,8 @@ import {LinkUrlsPipe} from 'modules/base/pipes/linkUrls.pipe';
 
         LinkUrlsPipe,
     ],
+    providers: [
+    ],
     exports: [
         ReactiveFormsModule,
 
