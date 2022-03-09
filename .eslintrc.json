@@ -50,7 +50,7 @@
         "eol-last": [1],
         "func-call-spacing": [0],
         "function-call-argument-newline": [1, "consistent"],
-        "function-paren-newline": [1, "multiline-arguments"],
+        "function-paren-newline": [0],
         "generator-star-spacing": [1, {"before": false, "after": true}],
         "implicit-arrow-linebreak": [1, "beside"],
         "jsx-quotes": [1, "prefer-single"],
